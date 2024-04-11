@@ -52,6 +52,8 @@ public class q2800 {
             expressions.add(expr);
         }
 
+        expressions.remove(bracket);
+
         for (String expr : expressions) {
             System.out.println(expr);
         }
