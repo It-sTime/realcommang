@@ -13,6 +13,8 @@ public class q1655 {
     public static void main (String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
         int N = Integer.parseInt(br.readLine());
 
         for (int i = 0; i < N; i++) {
@@ -30,7 +32,10 @@ public class q1655 {
                 max.add(min.poll());
             }
 
-            System.out.println(max.peek());
+            sb.append(max.peek());
+            sb.append("\n");
         }
+
+        System.out.println(sb.toString());
     }
 }
