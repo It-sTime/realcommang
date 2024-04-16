@@ -52,7 +52,7 @@ public class q2800_correct {
             if (!used[i]) sb.append(input.charAt(i));  // 사용되지 않은 위치의 문자만 추가
         }
         result.add(sb.toString());  // 결과 TreeSet에 추가
-
+        
         // 다음 괄호 쌍 제거 시도
         for (int i = start; i < pairs.size(); i++) {
             removed[i] = true;              // 현재 괄호 쌍을 제거하고
@@ -60,4 +60,6 @@ public class q2800_correct {
             removed[i] = false;             // 현재 괄호 쌍을 다시 복원
         }
     }
+
+
 }
