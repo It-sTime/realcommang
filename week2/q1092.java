@@ -39,10 +39,11 @@ public class q1092 {
 
         int time = 0;
         while (!boxes.isEmpty()) {
-            int idx = 0;
-            for (int i = 0; i < N; i++) { //크레인 갯수
-                if(idx < boxes.size() && krain.get(i) >= boxes.get(idx)) {
-                    boxes.remove(idx);
+            int idx = 0; int krainIdx = 0;
+            while (krainIdx < N) { //크레인 갯수
+                if(idx == boxes.size()) break;
+                else if(krain.get(krainIdx) >= boxes.get(idx)) {
+                    boxes.remove(idx); krainIdx++;
                 } else idx++;
             }
             time++;
