@@ -1,6 +1,10 @@
 package SWExpertAcademy;
 
+
+import java.util.Scanner;
+import java.io.FileInputStream;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,9 +12,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.StringTokenizer;
 
-public class q20728 {
-    public static void main (String[] args) throws IOException {
-
+class q20728
+{
+    public static void main(String args[]) throws IOException
+    {
         BufferedReader br = new BufferedReader(new FileReader("SWExpertAcademy/sin.txt"));
         int N = Integer.parseInt(br.readLine());
         StringTokenizer st;
@@ -41,5 +46,5 @@ public class q20728 {
             System.out.println(MIN);
         }
     }
-
 }
+
