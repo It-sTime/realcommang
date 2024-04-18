@@ -1,50 +1,40 @@
 package SWExpertAcademy;
 
-
-import java.util.Scanner;
-import java.io.FileInputStream;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.StringTokenizer;
+import java.util.Arrays;
 
-class q20728
-{
-    public static void main(String args[]) throws IOException
-    {
-        BufferedReader br = new BufferedReader(new FileReader("SWExpertAcademy/sin.txt"));
-        int N = Integer.parseInt(br.readLine());
-        StringTokenizer st;
+class q20728 {
+    public static void main(String args[]) throws IOException {
+
+        BufferedReader br = new BufferedReader(new FileReader("res/sin.txt"));
+        int N = Integer.parseInt(br.readLine()); // 첫 번째 줄에서 테스트 케이스의 수를 읽어옵니다.
 
         for (int i = 0; i < N; i++) {
 
-            st = new StringTokenizer(br.readLine(), " "); //주머니2개
-            int pouch1 = Integer.parseInt(st.nextToken());
-            int pouch = Integer.parseInt(st.nextToken()); //pouch 값으로 나뉨
-            st = new StringTokenizer(br.readLine(), " ");
-            ArrayList<Long> candies = new ArrayList<>();
+            String[] line = br.readLine().split(" "); // 다음 줄을 읽어서 공백을 기준으로 분리합니다.
+            int size = Integer.parseInt(line[1]); // 주머니 크기
 
-            while (st.hasMoreTokens()) {
-                candies.add(Long.parseLong(st.nextToken()));
+            String[] line1 = br.readLine().split(" ");
+            long[] candies = new long[line1.length];
+            for (int j = 0; j < line1.length; j++) {
+                candies[j] = Long.parseLong(line1[j]); // 사탕 배열을 long 타입으로 파싱하여 저장
             }
 
-            Collections.sort(candies, Comparator.reverseOrder());
+            Arrays.sort(candies); // 사탕 배열 정렬
 
-            int size = pouch;
-            int idx = 0; long MIN = Long.MAX_VALUE;
+            long MIN = Long.MAX_VALUE; int idx=candies.length-1;
+            while (idx >=0) {
 
-            while (idx+size-1 <= candies.size()-1) {
-                long temp = candies.get(idx) - candies.get(idx+size-1);
+                if (idx - size + 1 < 0) break;
+                long temp = candies[idx] - candies[idx - size + 1];
                 if (temp < MIN) MIN = temp;
-                idx++;
+                idx--;
             }
-
-            System.out.println(MIN);
+            System.out.println(MIN); // 최소 차이를 출력
         }
+
+        br.close(); // 리소스 해제
     }
 }
-
