@@ -3,36 +3,45 @@ package SWExpertAcademy;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Comparator;
 
 class q20728 {
     public static void main(String args[]) throws IOException {
 
-        BufferedReader br = new BufferedReader(new FileReader("res/sin.txt"));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine()); // 첫 번째 줄에서 테스트 케이스의 수를 읽어옵니다.
 
         for (int i = 0; i < N; i++) {
 
             String[] line = br.readLine().split(" "); // 다음 줄을 읽어서 공백을 기준으로 분리합니다.
-            int size = Integer.parseInt(line[1]); // 주머니 크기
+            int size = Integer.parseInt(line[1]); // 나눠줄 주머니 크기
+            int total = Integer.parseInt(line[0]); // 모든 주머니
 
             String[] line1 = br.readLine().split(" ");
             long[] candies = new long[line1.length];
-            for (int j = 0; j < line1.length; j++) {
+            total = line1.length;
+
+            for (int j = 0; j < total; j++) {
                 candies[j] = Long.parseLong(line1[j]); // 사탕 배열을 long 타입으로 파싱하여 저장
             }
 
-            Arrays.sort(candies); // 사탕 배열 정렬
+            Arrays.sort(candies); // 사탕 배열 정렬 큰수부터
 
-            long MIN = Long.MAX_VALUE; int idx=candies.length-1;
-            while (idx >=0) {
+            Long MIN = Long.MAX_VALUE; long small; long big;
 
-                if (idx - size + 1 < 0) break;
-                long temp = candies[idx] - candies[idx - size + 1];
-                if (temp < MIN) MIN = temp;
-                idx--;
+            for (int k = total-1; k >= size-1; k--) {
+
+                big = candies[k];
+
+              if ((k-size+1) >= 0) {
+                  small = candies[k-size+1];
+                  if(big-small < MIN) MIN = big-small;
+              }
+
             }
-            System.out.println(MIN); // 최소 차이를 출력
+            System.out.println("# " + i + " " + MIN);
         }
 
         br.close(); // 리소스 해제
