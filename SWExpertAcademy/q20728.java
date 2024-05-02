@@ -17,13 +17,11 @@ class q20728 {
 
             String[] line = br.readLine().split(" "); // 다음 줄을 읽어서 공백을 기준으로 분리합니다.
             int size = Integer.parseInt(line[1]); // 나눠줄 주머니 크기
-            int total = Integer.parseInt(line[0]); // 모든 주머니
 
             String[] line1 = br.readLine().split(" ");
             long[] candies = new long[line1.length];
-            total = line1.length;
 
-            for (int j = 0; j < total; j++) {
+            for (int j = 0; j < line1.length; j++) {
                 candies[j] = Long.parseLong(line1[j]); // 사탕 배열을 long 타입으로 파싱하여 저장
             }
 
@@ -31,13 +29,14 @@ class q20728 {
 
             Long MIN = Long.MAX_VALUE; long small; long big;
 
-            for (int k = total-1; k >= size-1; k--) {
+            for (int k = line1.length-1; k >= size-1; k--) {
 
                 big = candies[k];
 
               if ((k-size+1) >= 0) {
                   small = candies[k-size+1];
                   if(big-small < MIN) MIN = big-small;
+                  if (MIN == 0) break;
               }
 
             }
